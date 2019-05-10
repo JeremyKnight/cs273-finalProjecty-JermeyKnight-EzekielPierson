@@ -8,17 +8,21 @@
 class Team {
 
     private:
-        long id;
+        int id;
         std::vector<Player> players;
 
     public:
-        Team(std::vector<Player> p,long i): players(p),  id(i){}
+        Team(std::vector<Player> p,int i): players(p),  id(i){}
         Team() {
-            id= 00000000;
+            id= 0;
         }
         long getId() {return id;}
-        void setId(long i) {id =i;}
+        void setId(int i) {id =i;}
         std::vector<Player> getPlayers() {return players;}
+
+        void addPlayer(Player p) {
+            players.push_back(p);
+        }
 
 };
 
