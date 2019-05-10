@@ -22,6 +22,11 @@ int main() {
         }
         team.setId(x);
         teams.push_back(team);
+        for (int i = 0; i < teams.size(); i++) {
+            for (int j = 0; j < teams[i].getPlayers().size(); j++) {
+                cout << teams[i].getPlayers()[j].toString() << endl;
+            }
+        }
     }
 
 
