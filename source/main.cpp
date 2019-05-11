@@ -8,16 +8,14 @@
 #include <vector>
 using namespace std;
 
-
-
-int main() {
-    vector<Team> teams;  
+vector<Team> createTeams() {
+    vector<Team> teams;
     srand(time(NULL));  
     for(int x = 0; x < 4; x++) {
         Team team = Team();
         for(int y = 0; y<9; y++) {
             int r = rand()%100;
-            Player p = Player(x, r);
+            Player p = Player(x*10 +y, r);
             team.addPlayer(p);
         }
         team.setId(x);
@@ -28,9 +26,22 @@ int main() {
             }
         }
     }
+    return teams;
+}
+
+int main() {
+    //vector<Team> teams = createTeams();  
+
+    srand(time(NULL));
+    for(int i =0 ; i< 100; i++) {
+        int r = rand()%100;
+        Player p = Player(1, r);
+        PlateAppearance pa = PlateAppearance(p);
+    }
 
 
     
 
     return 0;
 }
+

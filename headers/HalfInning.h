@@ -15,7 +15,11 @@ class HalfInning {
     public:
         HalfInning(std::queue<PlateAppearance> e, Team t) : events(e), team(t) {}
         //initializes an empty queue for
-        HalfInning() {
+        HalfInning(Team t) {
+            team = t;
+
+
+
             std::cout << "initializing HalfInning with an empty queue of PlateAppearance\n";
         }
 
@@ -28,6 +32,13 @@ class HalfInning {
         void addEvent() {
             std::cout << "added an event\n";
         }
+
+        static void calculateRunsScored() {
+            
+            //for(int i = 0; i<)
+        }
+
+
 
 };
 

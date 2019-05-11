@@ -30,7 +30,7 @@ class Player {
         
         std::string toString() {
             std::stringstream sstream;
-            sstream << "ID" << id << "True talent" << trueTalent.toString();
+            sstream << "ID " << id << " " << trueTalent.toString();
             // FIXME: Add batting average and on base percantge.
             return sstream.str();
         }

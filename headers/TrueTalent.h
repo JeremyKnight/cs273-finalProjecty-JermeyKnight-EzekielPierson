@@ -13,6 +13,7 @@ class TrueTalent {
         double strikeOutRate; //strikeRate lower == better
         double walkRate;
         double BABIP;
+        double contactRate;
     
     public: 
         TrueTalent(int t) {
@@ -35,9 +36,11 @@ class TrueTalent {
             if(BABIP < 0.2) {
                 BABIP = 0.2;
             }
+
+            contactRate = 1 -(strikeOutRate + walkRate);
         }
 
-        double getStrikeoutRate() {
+        double getStrikeOutRate() {
             return strikeOutRate;
         }
 
@@ -53,11 +56,15 @@ class TrueTalent {
             return powerLvl;
         }
 
+        double getContactRate() {
+            return contactRate;
+        }
+
         std::string toString() {
             std::stringstream stringStream;
             stringStream << "True talent: " << ttyl;
             stringStream << " Walk rate: " << walkRate << " Strikeout rate: " << strikeOutRate << " BABIP: " << BABIP;
-            stringStream << " Power Level: " << powerLvl;
+            stringStream << " Power Level: " << powerLvl << " contact rate: " << contactRate;
             return stringStream.str();
         }
 };
