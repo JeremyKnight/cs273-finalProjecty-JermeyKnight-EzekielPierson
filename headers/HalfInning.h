@@ -22,7 +22,7 @@ class HalfInning {
             while(outs <3) {
                 PlateAppearance pa = PlateAppearance(team.getPlayers()[i]);
                 if(pa.getOutcome() == Outcome::out || pa.getOutcome() == Outcome::strikeOut) {
-                    std::cout << "out from halfinning!\n";
+                    //std::cout << "out from halfinning!\n";
                     outs++;
                 }
                 events.push(pa);

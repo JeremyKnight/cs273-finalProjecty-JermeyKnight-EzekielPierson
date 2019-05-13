@@ -19,7 +19,7 @@ class PlateAppearance {
     public: 
         PlateAppearance(Player &p) : player(p) {
             //depeding on player, create string that represents what happened
-            
+            srand(time(NULL));  
             double r = rand() / (RAND_MAX + 1.0);
             // std::cout << "random number from plateAppearance: " << r << std::endl; 
 

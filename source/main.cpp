@@ -12,7 +12,7 @@ using namespace std;
 vector<Team> createTeams() {
     vector<Team> teams;
     srand(time(NULL));  
-    for(int x = 0; x < 4; x++) {
+    for(int x = 0; x < 2; x++) {
         Team team = Team();
         for(int y = 0; y<9; y++) {
             int r = rand()%100;
@@ -31,7 +31,7 @@ vector<Team> createTeams() {
 }
 
 int main() {
-    //vector<Team> teams = createTeams();  
+    vector<Team> teams = createTeams();  
 
     /*srand(time(NULL));
     for(int i =0 ; i< 1000; i++) {
@@ -40,7 +40,7 @@ int main() {
         PlateAppearance pa = PlateAppearance(p);
     }
     */
-
+    /*
     Team team = Team();
     for(int y = 0; y<9; y++) {
         int r = rand()%100;
@@ -48,8 +48,25 @@ int main() {
         team.addPlayer(p);
     }
     team.setId(1);
-
-    HalfInning half = HalfInning(team);
+    */
+    std::vector<Game> games;
+    Team t1 = teams[0];
+    Team t2 = teams[1];
+    int teamOneWins = 0;
+    int teamTwoWins = 0;
+    while(teamOneWins < 4 && teamTwoWins < 4)  {
+        Game game = Game(t1,  t2);
+        if(game.getWinner().getId() == t1.getId()) {
+            teamOneWins++;
+        } else {
+            teamTwoWins++;
+        }
+        games.push_back(game);
+    }
+    std::cout << "Team " << t1.getId() << "won " << teamOneWins << "games." << std::endl;
+    std::cout << "Team " << t2.getId() << "won " << teamTwoWins << "games." << std::endl;
+    std::cout << "Games played: " << games.size() << std::endl;
+    //HalfInning half = HalfInning(team);
     
 
     return 0;
