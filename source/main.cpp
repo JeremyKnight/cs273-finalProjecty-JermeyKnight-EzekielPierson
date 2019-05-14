@@ -11,7 +11,6 @@ using namespace std;
 
 vector<Team> createTeams() {
     vector<Team> teams;
-    srand(time(NULL));  
     for(int x = 0; x < 2; x++) {
         Team team = Team();
         for(int y = 0; y<9; y++) {
@@ -19,7 +18,7 @@ vector<Team> createTeams() {
             Player p = Player(x*10 +y, r);
             team.addPlayer(p);
         }
-        team.setId(x);
+        team.setId(x+1);
         teams.push_back(team);
         for (int i = 0; i < teams.size(); i++) {
             for (int j = 0; j < teams[i].getPlayers().size(); j++) {
@@ -31,6 +30,8 @@ vector<Team> createTeams() {
 }
 
 int main() {
+    //Seed randomization for the entire program.
+    srand(time(NULL));  
     vector<Team> teams = createTeams();  
 
     /*srand(time(NULL));
@@ -63,8 +64,8 @@ int main() {
         }
         games.push_back(game);
     }
-    std::cout << "Team " << t1.getId() << "won " << teamOneWins << "games." << std::endl;
-    std::cout << "Team " << t2.getId() << "won " << teamTwoWins << "games." << std::endl;
+    std::cout << "Team " << t1.getId() << " won " << teamOneWins << " games." << std::endl;
+    std::cout << "Team " << t2.getId() << " won " << teamTwoWins << " games." << std::endl;
     std::cout << "Games played: " << games.size() << std::endl;
     //HalfInning half = HalfInning(team);
     
