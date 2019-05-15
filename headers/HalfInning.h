@@ -10,36 +10,36 @@ class HalfInning {
     private:
        std::queue<PlateAppearance> events;
        int runsScored;
-       Team team; 
+       Team *team; 
     
     public:
-        HalfInning(std::queue<PlateAppearance> e, Team & t) : events(e), team(t) {}
         //initializes an empty queue for
-        HalfInning(Team & t) {
+        HalfInning(Team* t) {
             team = t;
             int outs=0;
-            int i =0;
+            int i =team->getStopIndex();
             while(outs <3) {
-                PlateAppearance pa = PlateAppearance(team.getPlayers()[i]);
+                PlateAppearance pa = PlateAppearance(team->getPlayers()[i]);
                 if(pa.getOutcome() == Outcome::out || pa.getOutcome() == Outcome::strikeOut) {
                     //std::cout << "out from halfinning!\n";
                     outs++;
                 }
                 events.push(pa);
-                if(i>=9) {
+                if(i>=8) {
                     i=0;
                 }else {
                     i++;
                 }
             }
-            team.setStopIndex(i);
+            team->setStopIndex(i);
+            //std::cout << "stop index: " << i << std::endl;
             runsScored = calculateRunsScored(events);
             
         }
 
         std::queue<PlateAppearance> getEvents() {return events;}
         int getRunScored() {return runsScored;}
-        Team& getTeam() {return team;}
+        Team* getTeam() {return team;}
 
         static int calculateRunsScored(std::queue<PlateAppearance> queue) {
             std::vector<int> runners;

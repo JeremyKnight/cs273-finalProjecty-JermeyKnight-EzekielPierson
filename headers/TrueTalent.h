@@ -19,7 +19,7 @@ class TrueTalent {
         TrueTalent(int t) {
             ttyl = t;
            
-            powerLvl = t/1500.0;
+            powerLvl = t/1000.0;
             strikeOutRate = fabs((t-99)/213.0);
             if (strikeOutRate < .1) {
                 strikeOutRate = .1;

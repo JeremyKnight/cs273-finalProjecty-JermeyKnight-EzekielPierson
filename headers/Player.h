@@ -32,7 +32,7 @@ class Player {
         } 
 
         double getSlugging() {
-            return singles+doubles*2+triples*3+homeRuns*4/(double)PlateAppearance - walks;
+            return (singles+doubles*2+triples*3+homeRuns*4)/(double)(PlateAppearance - walks);
         }
 
         int getId() {return id;}
@@ -56,7 +56,7 @@ class Player {
         std::string toString() {
             std::stringstream sstream;
             sstream << "Player: " << id << " has a triple slash of " << getBattingAverage() << "/" << getOnBasePercentage() << "/" << getSlugging() << std::endl; 
-            sstream << singles << std::endl;
+            sstream << "hits: " << getHits() << " singles: " << singles << " doubles: "<< doubles << " triples: " << triples << " home runs: " << homeRuns << std::endl;
             // FIXME: Add batting average and on base percantge.
             return sstream.str();
         }

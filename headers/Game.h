@@ -11,8 +11,8 @@ class Game {
     private:
         int winningScore;
         int losingScore;
-        Team winner;
-        Team loser;
+        Team* winner;
+        Team* loser;
 
         std::string gameString;
         std::string gameBoard;
@@ -21,7 +21,7 @@ class Game {
         std::vector<HalfInning> losersInnings;
   
     public:
-        Game(Team &home, Team &away) {
+        Game(Team* home, Team* away) {
             
             int teamOneScore = 0;
             int teamTwoScore = 0;
@@ -45,6 +45,7 @@ class Game {
             homeStr <<   "  home: ";
             awayStr <<   "  away: ";
             stuff <<     "--------";
+            
 
             for(int x = 0; x < 9 || teamOneScore == teamTwoScore; x++) {
             
@@ -103,8 +104,8 @@ class Game {
 
         int getWinningScore() {return winningScore;}
         int getLosingScore() {return losingScore;}
-        Team& getWinner() {return winner;}
-        Team& getLoser() {return loser;}
+        Team* getWinner() {return winner;}
+        Team* getLoser() {return loser;}
         std::vector<HalfInning> getWinnersInnings() {return winnersInnings;}
         std::vector<HalfInning> getLosersInnings() {return losersInnings;}
 
