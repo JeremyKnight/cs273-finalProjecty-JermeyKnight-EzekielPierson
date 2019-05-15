@@ -27,7 +27,6 @@ class HalfInning {
                 }
                 events.push(pa);
                 if(i>=9) {
-                    std::cout << "lineup turned over\n";
                     i=0;
                 }else {
                     i++;
@@ -35,12 +34,12 @@ class HalfInning {
             }
             team.setStopIndex(i);
             runsScored = calculateRunsScored(events);
-            std::cout << "runs scored in inning: " << runsScored << std::endl;
+            
         }
 
         std::queue<PlateAppearance> getEvents() {return events;}
         int getRunScored() {return runsScored;}
-        Team getTeam() {return team;}
+        Team& getTeam() {return team;}
 
         static int calculateRunsScored(std::queue<PlateAppearance> queue) {
             std::vector<int> runners;
@@ -76,7 +75,7 @@ class HalfInning {
         for (int i = 0; i < runners.size(); i++) {
             runners[i] = runners[i] += incrementRunnerBy;
             if (runners[i] > 4) {
-                std::cout << "runner scored on a " << eventDescription << std::endl;
+                //std::cout << "runner scored on a " << eventDescription << std::endl;
                 runners[i] = -1000;
                 rs++;
             }

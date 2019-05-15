@@ -19,11 +19,14 @@ class PlateAppearance {
     public: 
         PlateAppearance(Player &p) : player(p) {
             //depeding on player, create string that represents what happened
+            player.incrementPlateAppearance();
             double r = rand() / (RAND_MAX + 1.0);
             if(r<player.getTrueTalentLevel().getWalkRate()) {
+                player.incrementWalks();
                 outcome = Outcome::walk;
                 happens = "player walked\n";
             } else if ( r< (player.getTrueTalentLevel().getStrikeOutRate() + player.getTrueTalentLevel().getWalkRate())) {
+                player.incrementStrikeouts();
                 outcome = Outcome::strikeOut;
                 happens = "player struck out\n";
             } else {
@@ -35,17 +38,21 @@ class PlateAppearance {
                     if(s<player.getTrueTalentLevel().getPowerLevel()*100) {
                         int t = rand()%1000;
                         if(t<100) {
+                            player.incrementTriples();
                             outcome = Outcome::triple;
                             happens = "triple\n";
                         } else {
+                            player.incrementDoubles();
                             outcome = Outcome::Double;
                             happens = "double\n";
                         }
                     } else {
+                        player.incrementSingles();
                         outcome = Outcome::single;
                         happens = "single\n";
                     }
                 } else if(i<player.getTrueTalentLevel().getBABIP()+player.getTrueTalentLevel().getPowerLevel()) {
+                    player.incrementHomeRuns();
                     outcome = Outcome::homeRun;
 
                     happens = "home run\n"; 
@@ -54,7 +61,6 @@ class PlateAppearance {
                     happens = "out\n"; 
                 }
             }
-            std::cout << happens << std::endl;
         }
 
         std::string getHappens() {

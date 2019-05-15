@@ -9,28 +9,54 @@ class Player {
     private:
         int id;
         TrueTalent trueTalent; //true talent level
-        int BA; //batting average
-        int OBP; //on base percentage
+        int singles = 0;
+        int doubles = 0;
+        int triples = 0;
+        int homeRuns = 0;
+        int PlateAppearance = 0;
+        int walks = 0;
+        int strikeouts = 0;
         //add more as needed
     
     public:
 
         Player(int i, TrueTalent t) : id(i), trueTalent(t) {}
-        Player(int i, TrueTalent t, int ba, int obp) : id(i), trueTalent(t), BA(ba), OBP(obp) {}
 
         TrueTalent getTrueTalentLevel() {return trueTalent;}
-        int getBattingAverage() {return BA;}
-        int getOnBasePercentage() {return OBP;}
+        double getBattingAverage() {
+            return getHits()/(double)(PlateAppearance-walks);
+        }
+
+        double getOnBasePercentage() {
+            return (getHits() + walks) / (double)PlateAppearance;
+        } 
+
+        double getSlugging() {
+            return singles+doubles*2+triples*3+homeRuns*4/(double)PlateAppearance - walks;
+        }
+
         int getId() {return id;}
 
         void setTrueTalentLevel(TrueTalent t) {trueTalent = t;}
-        void setBattingAverage(int ba) {BA=ba;}
-        void setOnBasePercentage(int obp) {OBP=obp;}
+
         void setId(int i) {id=i;}
-        
+
+        int getHits() {
+            return triples + homeRuns + singles + doubles;
+        }
+
+        void incrementSingles() { singles++;}
+        void incrementDoubles() { doubles++;}
+        void incrementTriples() { triples++;}
+        void incrementHomeRuns() { homeRuns++;}
+        void incrementPlateAppearance() { PlateAppearance++;}
+        void incrementWalks() { walks++;}
+        void incrementStrikeouts() { strikeouts++;}
+
         std::string toString() {
             std::stringstream sstream;
-            sstream << "ID " << id << " " << trueTalent.toString();
+            sstream << "Player: " << id << " has a triple slash of " << getBattingAverage() << "/" << getOnBasePercentage() << "/" << getSlugging() << std::endl; 
+            sstream << singles << std::endl;
             // FIXME: Add batting average and on base percantge.
             return sstream.str();
         }

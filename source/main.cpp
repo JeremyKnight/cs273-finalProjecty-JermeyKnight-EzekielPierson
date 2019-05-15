@@ -62,13 +62,18 @@ int main() {
         } else {
             teamTwoWins++;
         }
+        std::cout << game.getGameBoard() << std::endl;
         games.push_back(game);
     }
+
+
     std::cout << "Team " << t1.getId() << " won " << teamOneWins << " games." << std::endl;
     std::cout << "Team " << t2.getId() << " won " << teamTwoWins << " games." << std::endl;
     std::cout << "Games played: " << games.size() << std::endl;
     //HalfInning half = HalfInning(team);
-    
+    for (int i = 0; i < t1.getPlayers().size(); i++) {
+        cout << t1.getPlayers()[i].toString() << endl;
+    }
 
     return 0;
 }

@@ -19,7 +19,7 @@ class Team {
         }
         int getId() {return id;}
         void setId(int i) {id =i;}
-        std::vector<Player> getPlayers() {return players;}
+        std::vector<Player>& getPlayers() {return players;}
 
         void setStopIndex(int s) {
             stopIndex = s;
