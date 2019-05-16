@@ -50,7 +50,6 @@ class Team {
         void addPlayer(Player *p) {
             players.push_back(p);
         }
-
 };
 
 #endif

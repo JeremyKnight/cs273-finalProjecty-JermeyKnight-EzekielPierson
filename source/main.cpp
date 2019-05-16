@@ -71,9 +71,17 @@ Team* playSeries(std::vector<Game> &g, Team* team1, Team* team2) {
 
     if(teamOneWins==4) {
         cout << t1->getName() << " won the series " << "defeating the " << t2->getName() << " " << teamOneWins << " to " << teamTwoWins << endl;
+        string dummyVar;
+        // For demo purposes, break up the series into discrete units.
+        cout << "Enter x to continue ";
+        cin >> dummyVar;
         return t2;
     } else {
         cout << t2->getName() << " won the series " << "defeating the " << t1->getName() << " " << teamTwoWins << " to " << teamOneWins << endl;
+        string dummyVar;
+        cout << "Enter x to continue ";
+        cin >> dummyVar;
+        cout << endl;
         return t1;
     }
 }
@@ -97,6 +105,10 @@ int main() {
                 winningTeams.erase(winningTeams.begin()+i);
             } else {
                 winningTeams.erase(winningTeams.begin()+i-1);
+            }
+
+            if (winningTeams.size() == 1) {
+                cout << winningTeams[0]->getName() << " is the tournament champion!" << endl;
             }
         }
         /*
