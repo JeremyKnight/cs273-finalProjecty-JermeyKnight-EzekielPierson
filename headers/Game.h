@@ -1,3 +1,8 @@
+////////////////////
+//Game.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _GAME_H_
 #define _GAME_H_
 
@@ -7,6 +12,7 @@
 #include "Team.h"
 #include "HalfInning.h"
 
+//represents a specific game in baseball
 class Game {
     private:
         int winningScore;

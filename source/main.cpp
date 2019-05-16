@@ -1,3 +1,8 @@
+////////////////////
+//main.cpp
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #include <iostream>
 #include "Team.h"
 #include "Game.h"

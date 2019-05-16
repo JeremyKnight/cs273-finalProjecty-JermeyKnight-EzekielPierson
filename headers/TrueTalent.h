@@ -1,3 +1,8 @@
+////////////////////
+//TrueTalent.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _TrueTalent_H_
 #define _TrueTalent_H_
 
@@ -6,6 +11,7 @@
 #include <sstream>
 #include <cmath>
 
+//represents a Talent level for the player class
 class TrueTalent {
     private:
         //The single value that represents the actual talent of the player

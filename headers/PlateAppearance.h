@@ -1,3 +1,8 @@
+////////////////////
+//PlateAppearance.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _PLATEAPPEARANCE_H_
 #define _PLATEAPPEARANCE_H_
 

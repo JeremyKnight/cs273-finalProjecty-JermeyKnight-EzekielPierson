@@ -1,3 +1,8 @@
+////////////////////
+//Player.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _PLAYER_H_
 #define _PLAYER_H_
 #include <iostream>
@@ -5,6 +10,7 @@
 #include <string>
 #include <sstream>
 
+//represents a player for a baseball team
 class Player {
     private:
         int id;

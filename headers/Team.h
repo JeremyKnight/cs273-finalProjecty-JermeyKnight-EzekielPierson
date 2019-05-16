@@ -1,3 +1,8 @@
+////////////////////
+//Team.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _TEAM_H_
 #define _TEAM_H_
 
@@ -6,6 +11,7 @@
 #include "Player.h"
 #include <string>
 
+//represents a baseball team
 class Team {
 
     private:

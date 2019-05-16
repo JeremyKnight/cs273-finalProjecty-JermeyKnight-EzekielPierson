@@ -1,3 +1,8 @@
+////////////////////
+//HalfInning.h 
+//Jeremy Knight and Ezekiel Pierson all rights reserved
+///////////////
+
 #ifndef _HALFINNING_H_
 #define _HALFINNING_H_
 
@@ -6,6 +11,7 @@
 #include "Team.h"
 #include "PlateAppearance.h"
 
+//represents a half inning in baseball
 class HalfInning {
     private:
        std::queue<PlateAppearance> events;
