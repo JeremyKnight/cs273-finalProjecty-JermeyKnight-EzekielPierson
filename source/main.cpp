@@ -71,21 +71,20 @@ Team* playSeries(std::vector<Game> &g, Team* team1, Team* team2) {
 
     if(teamOneWins==4) {
         cout << t1->getName() << " won the series " << "defeating the " << t2->getName() << " " << teamOneWins << " to " << teamTwoWins << endl;
-        string dummyVar;
-        // For demo purposes, break up the series into discrete units.
-        cout << "Enter x to continue ";
-        cin >> dummyVar;
         return t2;
     } else {
         cout << t2->getName() << " won the series " << "defeating the " << t1->getName() << " " << teamTwoWins << " to " << teamOneWins << endl;
-        string dummyVar;
-        cout << "Enter x to continue ";
-        cin >> dummyVar;
-        cout << endl;
         return t1;
     }
 }
-
+// Display player statistics for the entire postseason.
+// Team * team -- the team that the players play for.
+void displayPlayerStats(Team * team) {
+    cout << "Player stats for team: " << team->getName() << endl;
+    for (int i = 0; i < team->getPlayers().size(); i++) {
+        cout << team->getPlayers()[i]->toString() << endl;
+    }
+}
 
 int main() {
     //Seed randomization for the entire program.
@@ -95,12 +94,10 @@ int main() {
     std::vector<Game> games;
 
     while(winningTeams.size()>1) {
-        //if(winningTeams.size()%2>1) P}
-// std::vector<Game> & g the vector of games to add the new games to.
-// Team * team1 -- the home team
-// Team * team2 -- the away team
         for(int i =1; i<winningTeams.size(); i++) {
-            Team* losingTeam = playSeries(games, winningTeams[i-1], winningTeams[i]);
+            Team * t1 = winningTeams[i-1];
+            Team * t2 = winningTeams[i];
+            Team* losingTeam = playSeries(games, t1, t2);
             if(winningTeams[i]->getId() == losingTeam->getId()) {
                 winningTeams.erase(winningTeams.begin()+i);
             } else {
@@ -110,25 +107,19 @@ int main() {
             if (winningTeams.size() == 1) {
                 cout << winningTeams[0]->getName() << " is the tournament champion!" << endl;
             }
-        }
-        /*
-        std::string response;
-        if(teams.size() > 2) {
-            cout << "print out player stats? (y/n) "
-            cin >> response;
-        } else {
-            cout << "print out player stats? (y/n) "
-        }
-        */
+
+             string response;
+             while(response != "y" && response != "n") {
+                cout << "Do you want to see player stats? (y/n) ";
+                cin >>  response;
+            }
+            if (response == "y") {
+                displayPlayerStats(t1);
+                displayPlayerStats(t2);
+            }
+            
+        }        
     }
-    
-    //create game/series
-    
-    /*
-    for (int i = 0; i < t1->getPlayers().size(); i++) {
-        cout << t1->getPlayers()[i]->toString() << endl;
-    }
-    */
     return 0;
 }
 
