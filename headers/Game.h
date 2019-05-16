@@ -101,6 +101,29 @@ class Game {
             
             
         }
+        
+        void normalizeString(string & s1, string & s2) {
+            cout << "s1.size is " << s1.size() << endl;
+            cout << "s2.size is " << s2.size() << endl;
+            string s;
+            if (s1.size() > s2.size()) {
+                int a = (s1.size() - s2.size());
+                for (int i = 0; i < a; i++) {
+                    s += " ";
+                }
+                s += s2;
+                s2 = s;
+            } else {
+                int a = (s2.size() - s1.size());
+                for (int i = 0; i < a; i++) {
+                    s += " ";
+                }
+                s += s1;
+                s1 = s;
+            }
+        }
+
+
 
         int getWinningScore() {return winningScore;}
         int getLosingScore() {return losingScore;}
