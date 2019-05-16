@@ -8,7 +8,10 @@
 class Player {
     private:
         int id;
-        TrueTalent trueTalent; //true talent level
+        //true talent level
+        TrueTalent trueTalent; 
+        // Actual couting stats
+        // Used to derive batting average, on-base, slugging.
         int singles = 0;
         int doubles = 0;
         int triples = 0;
@@ -16,12 +19,11 @@ class Player {
         int PlateAppearance = 0;
         int walks = 0;
         int strikeouts = 0;
-        //add more as needed
     
     public:
-
+        //Constructor
         Player(int i, TrueTalent t) : id(i), trueTalent(t) {}
-
+        //Getters and setters
         TrueTalent getTrueTalentLevel() {return trueTalent;}
         double getBattingAverage() {
             return getHits()/(double)(PlateAppearance-walks);
@@ -44,7 +46,8 @@ class Player {
         int getHits() {
             return triples + homeRuns + singles + doubles;
         }
-
+        // When a player gets a hit, strikes out, etc
+        // It is the responsbility of the user to call the appropriate method to update the associated counting stats.
         void incrementSingles() { singles++;}
         void incrementDoubles() { doubles++;}
         void incrementTriples() { triples++;}
@@ -52,12 +55,12 @@ class Player {
         void incrementPlateAppearance() { PlateAppearance++;}
         void incrementWalks() { walks++;}
         void incrementStrikeouts() { strikeouts++;}
-
+        // Returns a string based representation of the player's actual performance.
+        // Includes rate stats and counting stats.
         std::string toString() {
             std::stringstream sstream;
             sstream << "Player: " << id << " has a triple slash of " << getBattingAverage() << "/" << getOnBasePercentage() << "/" << getSlugging() << std::endl; 
             sstream << "hits: " << getHits() << " singles: " << singles << " doubles: "<< doubles << " triples: " << triples << " home runs: " << homeRuns << std::endl;
-            // FIXME: Add batting average and on base percantge.
             return sstream.str();
         }
 };

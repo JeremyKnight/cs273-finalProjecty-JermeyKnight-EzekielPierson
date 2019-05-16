@@ -5,22 +5,27 @@
 #include <Player.h>
 #include <string>
 #include <ctime>
-
+// The possible outcomes in a baseball plate appearance.
 enum class Outcome : int {
     single, Double, triple, homeRun, strikeOut, walk, out
 };
-
+// Represents the event that occurs once a plate appearance has finished.
 class PlateAppearance {
     private:
+        // The player this plateAppearance belongs to.
         Player* player;
+        // String based representation of what happened.
         std::string happens;
+        // Enum based representation of what happened 
         enum Outcome outcome;
         
-    public: 
+    public:
+        // Construct a PlateAppearance based off a random instance of the player's true talent level.
         PlateAppearance(Player *p) : player(p) {
-            //depeding on player, create string that represents what happened
+            //Generate a random number between 0 and 1.
             player->incrementPlateAppearance();
             double r = rand() / (RAND_MAX + 1.0);
+            // check where this number falls and determine the appropriate event based off of the player's talent level.
             if(r<player->getTrueTalentLevel().getWalkRate()) {
                 player->incrementWalks();
                 outcome = Outcome::walk;
@@ -62,7 +67,7 @@ class PlateAppearance {
                 }
             }
         }
-
+        //Getters
         std::string getHappens() {
             return happens;
         }
@@ -70,8 +75,6 @@ class PlateAppearance {
         enum Outcome getOutcome() {
             return outcome;
         }
-
-    
 };
 
 #endif

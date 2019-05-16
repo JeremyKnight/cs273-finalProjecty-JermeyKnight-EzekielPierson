@@ -8,7 +8,10 @@
 #include <vector>
 #include <queue>
 using namespace std;
-
+// Create teams for the tournament
+// Asks the user for an even number of teams
+// Then asks for the team names.
+// Returns a vector of teams.
 vector<Team*> createTeams() {
     vector<Team*> teams;
     int size = 1;
@@ -30,20 +33,16 @@ vector<Team*> createTeams() {
         cin >> name;
         team->setName(name);
         teams.push_back(team);
-
-        /*
-        for (int i = 0; i < teams.size(); i++) {
-            for (int j = 0; j < teams[i].getPlayers().size(); j++) {
-                cout << teams[i].getPlayers()[j]->toString() << endl;
-            }
-        }
-        */
     }
     return teams;
 }
 
-//returns losing team
-Team* playGame(std::vector<Game> &g, Team* team1, Team* team2) {
+// Play a seven game series between two teams.
+// std::vector<Game> & g the vector of games to add the new games to.
+// Team * team1 -- the home team
+// Team * team2 -- the away team
+// Returns losing team
+Team* playSeries(std::vector<Game> &g, Team* team1, Team* team2) {
     std::cout << team1->getName() << " vs " << team2->getName() << std::endl;
     std::vector<Game> games = g;
     Team* t1 = team1;
@@ -58,16 +57,18 @@ Team* playGame(std::vector<Game> &g, Team* team1, Team* team2) {
         } else {
             teamTwoWins++;
         }
+        //At the end of the game, return the next batter to the top of the order.
+        t1->setStopIndex(0);
+        t2->setStopIndex(0);
         std::cout << game.getGameBoard() << std::endl;
         games.push_back(game);
     }
-    std::cout << t1->getName() << " won " << teamOneWins << " games." << std::endl;
-    std::cout << t2->getName() << " won " << teamTwoWins << " games." << std::endl;
-    std::cout << "Games played: " << games.size() << std::endl;
 
     if(teamOneWins==4) {
+        cout << t1->getName() << " won the series " << "defeating the " << t2->getName() << " " << teamOneWins << " to " << teamTwoWins << endl;
         return t2;
     } else {
+        cout << t2->getName() << " won the series " << "defeating the " << t1->getName() << " " << teamTwoWins << " to " << teamOneWins << endl;
         return t1;
     }
 }
@@ -79,13 +80,14 @@ int main() {
     vector<Team*> teams = createTeams();
     vector<Team*> winningTeams = teams;
     std::vector<Game> games;
-     //losingTeams;
 
     while(winningTeams.size()>1) {
-        //if(winningTeams.size()%2>1) {}
-
+        //if(winningTeams.size()%2>1) P}
+// std::vector<Game> & g the vector of games to add the new games to.
+// Team * team1 -- the home team
+// Team * team2 -- the away team
         for(int i =1; i<winningTeams.size(); i++) {
-            Team* losingTeam = playGame(games, winningTeams[i-1], winningTeams[i]);
+            Team* losingTeam = playSeries(games, winningTeams[i-1], winningTeams[i]);
             if(winningTeams[i]->getId() == losingTeam->getId()) {
                 winningTeams.erase(winningTeams.begin()+i);
             } else {
